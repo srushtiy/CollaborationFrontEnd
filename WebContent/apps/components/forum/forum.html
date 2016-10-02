@@ -1,0 +1,49 @@
+ <div id="page-wrapper">
+
+  <div class="row">
+    <!-- Page Header -->
+    <div class="col-lg-12">
+      <h1 class="page-header">Forums</h1>
+    </div>
+    <!--End Page Header -->
+  </div>
+  <div class=" row"> 
+    <div class="col-lg-12">
+      <div  ng-controller="forumController">
+
+
+       <div class="panel panel-default ">
+        <div class="panel-heading">
+         Latest Forums
+         <hr>
+
+         <form ng-submit="forumCtrl.submit()">
+           <input type="hidden" ng-model="forumCtrl.forum.forum_id">
+           <input type="text" ng-model="forumCtrl.forum.forum_title" id="forum_title" class="form-control input-sm" placeholder="Enter title" />
+           <input type="text" ng-model="forumCtrl.forum.forum_description" id="forum_description" class="form-control input-sm" placeholder="Enter description" />
+           <input type="submit" value="{{!forumCtrl.forum.forum_id ? 'Add forum' : 'Update'}}" class="btn btn-primary "/>
+           <button type="button" ng-click="forumCtrl.reset()" class="btn btn-warning" >Reset Form</button>
+         </form>
+
+
+         <div class="inner-content" ng-repeat="forum in forumCtrl.forums">
+
+
+        
+        <a ng-click="forumCtrl.remove(forum.forum_id)" href=""><span class="fa fa-trash-o  pull-right" style="color:red">delete</span></a>
+        <a ng-click="forumCtrl.edit(forum.forum_id)" href=""><span class="fa fa-pencil-square-o  pull-right" >edit</span></a>
+        <h3>{{forum.forum_title}}</h3>
+        <p>{{forum.forum_description}}</p>
+
+        <a ng-href="#forums/forumView/{{forum.forum_id}}">view more</a>
+        <p>{{forum.date_created|date:'medium'}}</p>
+    
+
+
+      </div>
+    </div>
+  </div>
+</div>        
+</div>
+</div>
+</div>

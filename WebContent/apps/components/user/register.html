@@ -1,0 +1,28 @@
+<body class="ng-cloak">
+	<div class="generic-container" ng-controller="UserController as ctrl">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<span class="lead"> User Registration Form</span>
+			</div>
+			<div class="formcontainer">
+				<form ng-submit="ctrl.submit()" name="myForm"
+					class="form-horizontal">
+					<label> Register As</label>
+					<div class="form-group">
+						<div class="radio">
+							<input type="radio" name="role" value="S"
+								ng-model="ctrl.user.role"> Student <input type="radio"
+								name="role" value="A" ng-model="ctrl.user.role"> Alumni
+							<input type="radio" name="role" value="E"
+								ng-model="ctrl.user.role"> Employee
+						</div>
+					</div>
+					<div class="row">
+					<div class="form-group col-md-12">
+					<label class="col-md-2 control-table" for="id"> ID </label>
+					</div></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>

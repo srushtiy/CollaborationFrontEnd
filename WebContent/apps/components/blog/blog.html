@@ -1,0 +1,77 @@
+<div id="page-wrapper">
+
+    <div class="row">
+        <!-- Page Header -->
+        <div class="col-lg-12">
+            <h1 class="page-header" style="color:green"><span class="fa fa-th"></span> Blogs</h1>
+        </div>
+        <!--End Page Header -->
+    </div>
+    <div class=" row"> 
+      <div class="col-lg-12">
+        <div  ng-controller="blogController">
+           <div class="panel panel-default ">
+            <div class="panel-heading">
+               Latest Forums
+
+               <form ng-submit="blogCtrl.submit()" name="myForm" >
+                <input type="hidden" ng-model="blogCtrl.blog.blog_id" />
+                <input type="text" ng-model="blogCtrl.blog.blog_title" id="blog_title" class="form-control input-sm" placeholder="Enter tile" />
+                <input type="text" ng-model="blogCtrl.blog.blog_description" id="blog_description" class="form-control input-sm" placeholder="Enter Content"/>
+                <div class="btn-group">
+                    <input type="submit" value="{{!blogCtrl.blog.blog_id ? 'Add' : 'Update'}}" class="btn btn-primary " ng-disabled="myForm.$invalid">
+                    <button type="button" ng-click="blogCtrl.reset()" class="btn btn-warning" >Reset Form</button> 
+                </div>             
+            </form>
+
+            <hr>
+            <div ng-repeat="blog in blogCtrl.blogs" >
+                <div class="inner-content" >
+                    <h3 class="">{{blog.blog_title}}</h3>
+                    <a ng-click="blogCtrl.remove(blog.blog_id)" href=""><span class="fa fa-trash-o  pull-right" style="color:red">delete</span></a>
+                    <a ng-click="blogCtrl.edit(blog.blog_id)" href=""><span class="fa fa-pencil-square-o  pull-right" >edit</span></a>
+                    <p>{{blog.date_created|date:'medium'}}</p>
+
+                     <a ng-href="#blogs/blogView/{{blog.blog_id}}">View more</a>
+
+                    <!-- <button ng-if="!blog.toggle" ng-click="blog.toggle=true" class="pull-right">Show</button> -->
+
+                    <div>
+                        <p >{{blog.blog_description}}&nbsp;&nbsp; </p>
+                        <p> <b>{{blog.blog_comments.length}} Comments</b> <a class="pull-right"  ng-click="blog.toggle=true" href="">Comments</a></p>  
+                        <br>     
+                        <div  ng-class="{'hidden':!blog.toggle}">
+                            <div ng-controller="blogCommentController as commentCtrl">
+                            <form ng-submit="commentCtrl.submitComment()">
+                            <div class="input-group">
+                            <input type="hidden" ng-model="blogCtrl.blog.blog_id" name="">
+                                <input type="text" class="form-control" ng-model="commentCtrl.blogComment.description" placeholder="Comment...">
+                                <span class="input-group-btn">
+                                    <input class="btn btn-primary" type="submit" value="Comment" ng-model="blogCtrl.blog.blog_id"  />
+                                    
+                                </span>
+                            </div>
+                            </form>
+                         </div>
+                            <table class="table table-striped" >                                     
+                               <tbody>
+                                   <tr ng-repeat="blg in blog.blog_comments">
+                                       <td>{{blg.blog_description}}
+                                       </td>
+                                   </tr> 
+                                   <tr><td><button ng-if="blog.toggle" ng-click="blog.toggle=false" class="pull-right"><span class="fa fa-angle-up"></span></button></td></tr>
+                               </tbody>
+                           </table>
+                           
+                       </div>  
+                   </div>  
+               </div>
+               <br><br>
+           </div>
+
+       </div>
+   </div>
+</div>        
+</div>
+</div>
+</div>

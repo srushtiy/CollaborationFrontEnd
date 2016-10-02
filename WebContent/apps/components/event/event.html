@@ -1,0 +1,55 @@
+<div id="page-wrapper">
+
+      <div class="row">
+        <!-- Page Header -->
+     <div class="col-lg-12">
+            <h1 class="page-header" style="color:rgb(3,73,49);font-style:bold"><span class="fa fa-calendar"> </span> Event</h1>
+        </div>
+        <!--End Page Header -->
+    </div> 
+    <div class="row">
+        <div class="col-lg-12">
+       <div ng-controller="eventController">
+        <div class="col-lg-3 col-lg-push-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+             <input type="button" class="btn btn-default form-control" style="background:rgb(102,204,204)" value="{{!eventCtrl.event.event_id ? 'Create Event' : 'Update Event'}}"/>
+             <form ng-submit="eventCtrl.submit()" name="myForm" >
+                <input type="hidden" ng-model="eventCtrl.event.event_id" />
+                <input type="text" ng-model="eventCtrl.event.event_title" id="eventName" class="form-control input-sm" placeholder="Enter title" />
+                <input type="text" ng-model="eventCtrl.event.event_description" id="description" class="form-control input-sm" placeholder="Enter Description"/>
+                 <div class="btn-group">
+                <input type="submit" value="{{!eventCtrl.event.event_id ? 'Add' : 'Update'}}" class="btn btn-primary " ng-disabled="myForm.$invalid">
+                <button type="button" ng-click="eventCtrl.reset()" class="btn btn-warning" >Reset Form</button> 
+                </div>             
+            </form>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9 col-lg-pull-3">
+    <div class="row">
+        <div ng-repeat="event in eventCtrl.events">
+          <div class="col-lg-4">
+           <table class="table table-striped"> <tr> 
+            <th>event<a ng-click="eventCtrl.remove(event.event_id)"><span class="fa fa-times pull-right"></span></a>
+                <a ng-click="eventCtrl.edit(event.event_id)" ><span class="fa fa-pencil pull-right" ></span></a>
+            </th> </tr>                                 
+            <tbody>
+               <td ng-if='$odd' style="background:#AED6F1"> <a>{{event.event_title}}</a>
+                   <p>{{event.description}}</p>
+                   <p>Date:{{event.createdAt|date}}</p>
+               </td>
+               <td ng-if='$even' style="background:#D1F2EB"> <a>{{event.event_description}}</a>
+                   <p>{{event.event_description}}</p>
+                   <p>Date:{{event.event_created|date:'medium'}}</p>
+               </td></tbody>
+           </table>
+       </div>
+   </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
